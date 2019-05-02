@@ -1,21 +1,21 @@
 import random
-from wordset import words
+from .wordset import words
 
 class PasswordGenerator:
 
     separators = '-_!$&*+=23456789'
-    
+
     def __init__(self):
         """Create a new PasswordGenerator object."""
         try:
             self.rnd = random.SystemRandom()
         except:
             self.rnd = random.Random()
-        
+
     def generate(self, randomBits=47, maxLength=None):
         """Generate a random password containing at least randomBits of
         information, optionally with a maximum length."""
-        
+
         # Restrict the number of random bits to a reasonable range
         bits = randomBits
         if bits < 26:
@@ -36,7 +36,7 @@ class PasswordGenerator:
         length = 0
         while bits > 0:
             wordNdx = self.rnd.randint(0, len(words)-1)
-            
+
             word = words[wordNdx]
             if (self.rnd.randint(0, 1)):
                 word = word.capitalize()
@@ -55,4 +55,4 @@ class PasswordGenerator:
 
         return ''.join(output)
 
-                
+
